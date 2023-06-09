@@ -1,11 +1,12 @@
 # COB: Crude Oil Benchmarks Datasets
 
-Code used to generate results for  
+Code used to generate results for the paper 
 
-Paper **Real World Time Series Benchmark Datasets with Temporal Distribution Shifts: Global Crude Oil Asset Price and Volatility**  
-Author **Pranay Pasula**  
-Affiliation **UC Berkeley EECS**  
-Email **pasula AT berkeley.edu**  
+**Real World Time Series Benchmark Datasets with Temporal Distribution Shifts: Global Crude Oil Asset Price and Volatility**  
+
+**Pranay Pasula**  
+UC Berkeley EECS  
+pasula AT berkeley.edu
 
 ## Instructions
 
