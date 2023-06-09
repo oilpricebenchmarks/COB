@@ -23,26 +23,35 @@ References
 West Texas Intermediate (WTI) - Cushing, Oklahoma [DCOILWTICO], 
 retrieved from FRED, Federal Reserve Bank of St. Louis;
 https://fred.stlouisfed.org/series/DCOILWTICO, June 8, 2023.
+
+[2] U.S. Energy Information Administration, Crude Oil Prices: Brent - Europe 
+[DCOILBRENTEU], retrieved from FRED, Federal Reserve Bank of St. Louis; 
+https://fred.stlouisfed.org/series/DCOILBRENTEU, June 8, 2023.
+
+[3] Federal Reserve Bank of St. Louis, NBER based Recession Indicators for 
+the United States from the Period following the Peak through the Trough [USREC],
+retrieved from FRED, Federal Reserve Bank of St. Louis; 
+https://fred.stlouisfed.org/series/USREC, June 8, 2023.
 """
 
 
-# Read data and obtain recession labels
+# Read WTI daily spot price data [1]
 data_path = "data/DCOILWTICO_MAX.csv"
 data = pd.read_csv(data_path)
 
 
-# Earliest Brent Price is 1987-05-20 in dataset [1], so get US Recession data for only this range
+# Earliest Brent Price is 1987-05-20 in dataset [2], so get US Recession data for only this range
 earliest_date_brent_tup_int = (int(v) for v in EARLIEST_DATE_BRENT_STR.split('-'))
 last_date_tup_int = (int(v) for v in LAST_DATE_STR.split('-'))
 
-# Recession labels from National Bureau of Economic Research (NBER)
+# Read recession labels from National Bureau of Economic Research (NBER) [3]
 usrec = DataReader(
     "USREC", "fred",
     start=datetime(*tuple(earliest_date_brent_tup_int)),
     end=datetime(*tuple(last_date_tup_int))
 )
 
-# Earliest Brent Price is 1987-05-20 in dataset [1], so drop earlier WTI prices
+# Earliest Brent Price is 1987-05-20 in dataset [2], so drop earlier WTI prices
 drop_idx_below_val = (data[data['DATE'] == EARLIEST_DATE_BRENT_STR]).index[0]
 data = data[drop_idx_below_val:].reset_index(drop=True)
 
